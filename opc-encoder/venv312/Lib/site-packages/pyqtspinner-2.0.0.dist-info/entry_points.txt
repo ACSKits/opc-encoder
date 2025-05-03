@@ -1,0 +1,3 @@
+[console_scripts]
+pyqtspinner-conf=pyqtspinner.configurator:main
+
