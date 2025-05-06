@@ -1,3 +1,5 @@
+# scribe.py
+
 def read_file(path:str) -> list:
     try:
         # Read file

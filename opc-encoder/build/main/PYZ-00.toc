@@ -1,4 +1,4 @@
-('C:\\Users\\DeanFallo\\Documents\\Code\\Libraries\\OPCEncoder\\build\\main\\PYZ-00.pyz',
+('C:\\Users\\DeanFallo\\Documents\\Code\\Libraries\\OPCEncoder\\opc-encoder\\build\\main\\PYZ-00.pyz',
  [('PyQt6',
    'C:\\Users\\DeanFallo\\AppData\\Local\\Packages\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\LocalCache\\local-packages\\Python313\\site-packages\\PyQt6\\__init__.py',
    'PYMODULE'),
@@ -245,10 +245,10 @@
    'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_3.13.1008.0_x64__qbz5n2kfra8p0\\Lib\\email\\utils.py',
    'PYMODULE'),
   ('encoding_adder',
-   'C:\\Users\\DeanFallo\\Documents\\Code\\Libraries\\OPCEncoder\\encoding_adder.py',
+   'C:\\Users\\DeanFallo\\Documents\\Code\\Libraries\\OPCEncoder\\opc-encoder\\encoding_adder.py',
    'PYMODULE'),
   ('encoding_remover',
-   'C:\\Users\\DeanFallo\\Documents\\Code\\Libraries\\OPCEncoder\\encoding_remover.py',
+   'C:\\Users\\DeanFallo\\Documents\\Code\\Libraries\\OPCEncoder\\opc-encoder\\encoding_remover.py',
    'PYMODULE'),
   ('fnmatch',
    'C:\\Program '
@@ -616,7 +616,7 @@
    'C:\\Users\\DeanFallo\\AppData\\Local\\Packages\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\LocalCache\\local-packages\\Python313\\site-packages\\screeninfo\\util.py',
    'PYMODULE'),
   ('scribe',
-   'C:\\Users\\DeanFallo\\Documents\\Code\\Libraries\\OPCEncoder\\scribe.py',
+   'C:\\Users\\DeanFallo\\Documents\\Code\\Libraries\\OPCEncoder\\opc-encoder\\scribe.py',
    'PYMODULE'),
   ('secrets',
    'C:\\Program '

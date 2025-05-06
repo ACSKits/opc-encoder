@@ -1,3 +1,5 @@
+# main.py
+
 # Standard libraries
 import sys, os, platform, traceback, re
 from datetime import datetime
@@ -8,7 +10,11 @@ import encoding_remover as remover
 
 # External libraries
 from PyQt6.QtCore import Qt, QSize
-from PyQt6.QtWidgets import *
+from PyQt6.QtWidgets import (
+    QApplication, QMainWindow, QWidget, 
+    QVBoxLayout, QHBoxLayout, QLabel, 
+    QPushButton, QComboBox, QLineEdit, QFileDialog, QMessageBox
+)
 from concurrent.futures import ThreadPoolExecutor
 from screeninfo import get_monitors
 
@@ -208,12 +214,12 @@ class MainWindow(QMainWindow):
         # Add widgets to layout
         layout.addWidget(self.file_dialog)        
         layout.addLayout(self.row(self.file_label, self.file_path_display, self.file_dialog_reopen_button))
+        layout.addWidget(self.create_row("Controller:", self.controls_input))
+        layout.addWidget(self.create_row("Customer:", self.customer_input))        
         layout.addWidget(self.create_row("Blade:", self.blade_input))
         layout.addWidget(self.create_row("Cycle:", self.cycle_input))
-        layout.addWidget(self.create_row("Customer:", self.customer_input))
-        layout.addWidget(self.create_row("Controller:", self.controls_input))
-        layout.addWidget(self.create_row("Customer Rev:", self.customer_rev_input))
         layout.addWidget(self.create_row("ACS Rev:", self.acs_rev_input))
+        layout.addWidget(self.create_row("Customer Rev:", self.customer_rev_input))
         self.encode_button = QPushButton("Encode")
         layout.addWidget(self.encode_button)
 
@@ -309,32 +315,6 @@ class MainWindow(QMainWindow):
             self.path
         ])
 
-
-    def process_file(self, file_path):
-        try:
-            remover.remove_encoding(file_path)
-            encoder.add_encoding_single(
-                file_path,
-                self.controls_text,
-                self.blade_encoding,
-                self.cycle_encoding,
-                self.MARKER_ENCODING,
-                self.MARKER_ONLY_ENCODING,
-                self.SPECIAL_TOOL_ENCODING,
-                self.FIX_FILE_ENCODING,
-                self.MANUAL_TOOL_CHANGE_ENCODING,
-                self.STITCHED_ENCODING,
-                self.BALSA_ENCODING,
-                self.FLEX_ENCODING,
-                self.customer_rev_encoding,
-                self.acs_rev_encoding,
-                self.customer_encoding
-            )
-
-        except Exception as e:
-            print(f"Error processing file: {file_path}:{e}")
-            QMessageBox.critical(self, "Error", f"Failed to process file: {file_path}")
-
     def process_file(self, file_path, errors):
         try:
             remover.remove_encoding(file_path)
@@ -390,13 +370,16 @@ class MainWindow(QMainWindow):
                 if f.lower().endswith('.nc') and "LOOP" not in f.upper():
                     file_path = os.path.join(dirpath, f)
                     file_paths.append(file_path)
-                    
+
+        # Initialize errors list
         errors = []
         try:
             with ThreadPoolExecutor() as executor:
                 for path in file_paths:
+                    # Process each individual path in a thread pool
                     executor.submit(self.process_file, path, errors)
 
+            # If any errors are encountered
             if errors:
                 error_report = "\n".join(errors[:10])
                 more = f"\n\n...and {len(errors) - 10} more." if len(errors) > 10 else ""
